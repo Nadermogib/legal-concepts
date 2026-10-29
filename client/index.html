@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="لوحة متابعة حضور وانصراف موظفي المفاهيم القانونية وإصدار تقارير البصمة المعتمدة"
+    />
+
+    <!-- أيقونات وتطبيق الويب التقدمي (PWA) -->
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- إعدادات شريط العنوان ونمط التطبيق على الجوال والكمبيوتر -->
+    <meta name="theme-color" content="#2a2e33" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="المفاهيم القانونية" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="المفاهيم القانونية" />
+
+    <title>المفاهيم القانونية - تقارير الحضور</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- تسجيل Service Worker لتفعيل التثبيت الفوري -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.warn('Service Worker registration skipped:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

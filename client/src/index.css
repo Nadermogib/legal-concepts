@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+/* ===================================================
+   الخطوط (Aljazeera)
+   =================================================== */
+@font-face {
+  font-family: 'Aljazeera';
+  src: url('/src/assets/fonts/Al-Jazeera-Arabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aljazeera';
+  src: url('/src/assets/fonts/Al-Jazeera-Arabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===================================================
+   رموز التصميم (Design Tokens)
+   =================================================== */
+@theme {
+  --font-aljazeera: 'Aljazeera', sans-serif;
+
+  /* الألوان الأساسية */
+  --color-brand-olive: #CCCC99;
+  --color-brand-gray: #999999;
+  --color-olive-soft: #D5D5AC;
+  --color-sidebar-active-bg: #A1A198;
+  --color-tab-track: #D9D9D9;
+
+  /* ألوان النصوص */
+  --color-text-strong: #4D4D4D;
+  --color-text-muted: #999999;
+  --color-text-subtle: #ABABAB;
+  --color-text-dept: #585858;
+  --color-text-dept-code: #404040;
+  --color-text-donut-center: #3D3D3D;
+  --color-text-inactive-tab: #4F4F4F;
+
+  /* الفواصل والحدود */
+  --color-border-grid: #999999;
+  --color-border-olive: #CCCC99;
+  --color-divider-legend: #A6A6A6;
+
+  /* ألوان الحالات اليومية (الأيقونة / البطاقة / الدونات) */
+  --color-status-present: #1E8C5A;
+  --color-status-present-tint: #DBECE4;
+  --color-status-present-pill: #E9F4EF;
+
+  --color-status-absent: #C0392B;
+  --color-status-absent-tint: #F5DFDD;
+  --color-status-absent-pill: #F9ECEA;
+
+  --color-status-leave: #2471A3;
+  --color-status-leave-tint: #DCE8F0;
+  --color-status-leave-pill: #EAF1F6;
+
+  --color-status-trip: #7D3C98;
+  --color-status-trip-tint: #EAE0EE;
+  --color-status-trip-pill: #F2ECF5;
+
+  --color-status-excuse: #D68910;
+  --color-status-excuse-tint: #F8ECD9;
+  --color-status-excuse-pill: #FBF2E4;
+
+  /* لم يحضر بعد (البطاقة كحلية والنقطة/الدونات رمادي غامق) */
+  --color-status-notyet-card: #1B2A4A;
+  --color-status-notyet-dot: #4D4D4D;
+  --color-status-notyet-tint: #DADDE2;
+  --color-status-notyet-pill: #E9EAED;
+
+  /* شارات تقارير البصمة */
+  --color-badge-ok-bg: #DDEEE6;
+  --color-badge-ok-text: #1E8C5A;
+
+  --color-badge-late-bg: #F9EEDB;
+  --color-badge-late-text: #D68910;
+
+  /* بصمة واحدة: برتقالي فاتح بحسب مواصفات المشروع */
+  --color-badge-single-bg: #FDF2E9;
+  --color-badge-single-text: #D35400;
+
+  /* أنصاف أقطار الحواف (Radius) */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-card: 10px;
+  --radius-field: 12px;
+  --radius-pill: 14px;
+}
+
+/* ===================================================
+   إعادة الضبط والقواعد العامة
+   =================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-aljazeera);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #ffffff;
+  color: #333333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================================================
+   إخفاء أشرطة التمرير (Scrollbar) في كامل الموقع مع الحفاظ على التمرير
+   =================================================== */
+html,
+body,
+#root,
+* {
+  scrollbar-width: none !important;
+  /* Firefox */
+  -ms-overflow-style: none !important;
+  /* IE and Edge Legacy */
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  /* Chrome, Safari, Edge, Opera */
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
+}
+
+/* ===================================================
+   قواعد وتنسيقات الطباعة وتصدير PDF (Print & PDF Export)
+   =================================================== */
+@page {
+  size: A4 portrait;
+  margin: 10mm 10mm 12mm 10mm;
+}
+
+@media print {
+
+  /* 1. إجبار المتصفح على طباعة الألوان والتدرجات والخلفيات بدقة 100% */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* 2. تصفير الهوامش وضبط خلفية الصفحة */
+  html,
+  body,
+  #root {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    font-family: var(--font-aljazeera), 'Aljazeera', sans-serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* 3. إخفاء كافة عناصر واجهة الموقع خارج الوثيقة الرسمية */
+  #app-sidebar,
+  #app-header,
+  aside,
+  nav,
+  button,
+  .print\:hidden,
+  [data-print-hidden="true"],
+  [data-print-hidden="true"] * {
+    display: none !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* تفريغ وتصفير أي هوامش في الحاويات الرئيسية أثناء الطباعة */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    background: #ffffff !important;
+  }
+
+  /* 4. الحاوية المخصصة للطباعة والتصدير بتدفق طبيعي بدون تكرار الصفحات */
+  #print-container {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  #monthly-pdf-report {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    position: static !important;
+  }
+
+  /* 5. منع انقطاع الصفوف والبطاقات والترويسة مع السماح بتدفق الجداول طبيعياً */
+  header,
+  footer,
+  tr,
+  .break-inside-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* 6. تكرار ترويسة الجدول في كل صفحة عند تعدد الصفحات */
+  thead {
+    display: table-header-group !important;
+  }
+
+  tbody {
+    display: table-row-group !important;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+}

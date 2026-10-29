@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: legal-concepts-attendance
+    runtime: node
+    plan: starter
+    region: frankfurt
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Asia/Riyadh
+      - key: JISR_BASE_URL
+        value: https://apis.jisr.net/api
+      - key: WORKDAY_START
+        value: "06:00"
+      - key: WORKDAY_END
+        value: "16:00"
+      - key: ATTENDANCE_WINDOW_END
+        value: "12:00"
+      - key: PUNCH_WINDOW_START
+        value: "06:00"
+      - key: PUNCH_WINDOW_END
+        value: "17:00"
+      - key: DEFAULT_ENABLED_DEPARTMENT_IDS
+        value: "98210,98211,98212,175765"
+      - key: MONGODB_URI
+        sync: false
+      - key: JISR_API_KEY
+        sync: false
+      - key: JISR_SECRET
+        sync: false
+      - key: JISR_SLUG
+        sync: false
+      - key: DASHBOARD_USER
+        sync: false
+      - key: DASHBOARD_PASS
+        sync: false
+
